@@ -14,6 +14,7 @@ It will take about 8 minutes if you want to collect your daily allowance in one 
 To get it going, open the script in R and do the following:
 
 * Set your working directory appropriately
+* check the list of libraries are installed
 * Put a single shapefile into the same folder, change the file name/location at:
 ```
 gbmerge <- readOGR(dsn="GB_merged", "GB_merged") 

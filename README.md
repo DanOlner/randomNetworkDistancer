@@ -11,6 +11,9 @@ To get the maximum daily number, the API calls need to stay below 5 per second
 (using 2 `elements' as this code does; see link above for explanation of elements). 
 It will take about 8 minutes if you want to collect your daily allowance in one code run.
 
+The API doesn't appear to require a key or a specific IP address, though the API page suggests it does. 
+I'd be interested in hearing if it works for others.
+
 To get it going, open the script in R and do the following:
 
 * Set your working directory appropriately
@@ -26,7 +29,7 @@ gbmerge <- readOGR(dsn="GB_merged", "GB_merged")
 randomPointOrigins <- spTransform(randomPointOrigins, CRS("+init=epsg:4326"))
 randomPointDestinations <- spTransform(randomPointDestinations, CRS("+init=epsg:4326"))
 ```
-* Change the proxy settings in the GET method
+* Change the proxy settings in the GET method (i.e. comment it out if not needed; currently set up for Leeds University LAN).
 
 Failed route finding attempts are stripped out so you'll probably get slightly less than the requested number. 
 R will tell you how many failed when it finishes running.

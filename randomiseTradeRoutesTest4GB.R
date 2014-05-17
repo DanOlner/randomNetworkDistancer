@@ -7,7 +7,6 @@
 setwd("C:/Users/geodo/Dropbox/R/Workspace/randomNetworkDistancer")
 
 library(rgdal)
-library(plyr)
 library(rgeos)
 library(httr)
 library(jsonlite)
@@ -129,6 +128,6 @@ colnames(readyForWriting)[colnames(readyForWriting)=="X4"] <- "destination"
 readyForWriting <- readyForWriting[ !is.na(readyForWriting$distance) ,]
 
 #Write the final results file
-write.csv(readyForWriting, "GoogleDistanceMatrixRandomPathRresults2.csv")
+write.csv(readyForWriting, "GoogleDistanceMatrixRandomPathRresults.csv")
 
 print(paste(pairNum, "attempts, ", (pairNum - fail), "successful."))

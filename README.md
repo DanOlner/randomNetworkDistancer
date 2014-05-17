@@ -30,6 +30,11 @@ randomPointOrigins <- spTransform(randomPointOrigins, CRS("+init=epsg:4326"))
 randomPointDestinations <- spTransform(randomPointDestinations, CRS("+init=epsg:4326"))
 ```
 * Change the proxy settings in the GET method (i.e. comment it out if not needed; currently set up for Leeds University LAN).
+* Choose the number of random routes to pick on this run with:
+```
+pairNum = ...
+```
+* As mentioned above, Google says its daily limit is 2500 without having a business account. Note also, the CSV currently doesn't save until the end of the process.
 
 Failed route finding attempts are stripped out so you'll probably get slightly less than the requested number. 
 R will tell you how many failed when it finishes running.

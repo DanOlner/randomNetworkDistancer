@@ -3,7 +3,7 @@ randomNetworkDistancer
 
 Using R to find and save random routes in a given shapefile using Google's distance matrix API. 
 It will output a CSV containing origin/destination details, the road network distance between them 
-and the time taken to travel, according to Google.
+and the time taken to travel, according to Google. Each CSV is date/time-stamped in the filename so they won't overwrite each other.
 
 Read [Google's distance matrix API page](https://developers.google.com/maps/documentation/distancematrix/) 
 for full details of how it works. You can only get a maximum of 2500 routes per day without paying them. 

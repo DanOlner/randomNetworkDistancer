@@ -127,7 +127,15 @@ colnames(readyForWriting)[colnames(readyForWriting)=="X4"] <- "destination"
 #Strip out failed calls
 readyForWriting <- readyForWriting[ !is.na(readyForWriting$distance) ,]
 
-#Write the final results file
-write.csv(readyForWriting, "GoogleDistanceMatrixRandomPathRresults.csv")
+#Write the final results file, unique name each time
+filename = paste("GoogleDistanceMatrixRandomPathRresults_",date(),".csv",sep="")
+
+#spaces with underscores
+filename <- gsub(" ", "_", filename)
+#colons with underscores
+filename <- gsub(":", "_", filename)
+
+write.csv(readyForWriting, filename)
 
 print(paste(pairNum, "attempts, ", (pairNum - fail), "successful."))
+print(paste("File written: ", filename))

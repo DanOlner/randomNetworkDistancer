@@ -4,7 +4,7 @@
 #Store and save results as CSV
 
 #Change this!
-setwd("C:/Users/geodo/Dropbox/R/Workspace/randomNetworkDistancer")
+#setwd("C:/Users/geodo/Dropbox/R/Workspace/randomNetworkDistancer")
 
 library(rgdal)
 library(rgeos)
@@ -34,7 +34,7 @@ gbmerge <- readOGR(dsn="GB_merged", "GB_merged")
 #The csv won't be saved until the end of the process
 #Job: add option to save regularly so's not to risk wasting API call limit
 #DAILY ALLOWANCE IS 2500.
-pairNum = 2
+pairNum = 2000
 
 #http://casoilresource.lawr.ucdavis.edu/drupal/book/export/html/644
 #sp package has specific tool for spatial sampling within polygons. Hooray!
@@ -76,6 +76,7 @@ for(i in 1:pairNum) {
 qry <- paste("origins=", pointSet[i,2] , "," , pointSet[i,1] ,
              "&destinations=" ,pointSet[i,4] , "," , pointSet[i,3] ,
              "&sensor=FALSE",
+#              "&mode=bicycling",
              "&avoid=ferries",#not going to any islands!
              sep=""#no spaces
 )

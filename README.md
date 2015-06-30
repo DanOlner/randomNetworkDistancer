@@ -3,7 +3,7 @@ randomNetworkDistancer
 
 ![route factor](https://github.com/DanOlner/randomNetworkDistancer/blob/master/images/routefactor_vs_distance_straightline_over_route.png)
 
-> "Route factor" for the UK, calculated from data collected using randomNetworkDistancer. "Route factor" here is road network route over Euclidean (actually Great Circle) distance, so it's "how much further are road routes than the crow flys?" The route factor for a range of distances clearly shows how longer journeys get more efficient. Code for this plot is in routeFactor.R
+> "Route factor" for the UK, calculated from data collected using randomNetworkDistancer. "Route factor" here is road network route over Euclidean (actually Great Circle) distance, so it's "how much further are road routes than the crow flies?" The route factor for a range of distances clearly shows how longer journeys get more efficient. Code for this plot is in routeFactor.R
 
 Using R to find and save random routes in a given shapefile using Google's distance matrix API. 
 It will output a CSV containing origin/destination details, the road network distance between them 

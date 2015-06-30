@@ -5,9 +5,8 @@ randomNetworkDistancer
 
 > "Route factor" for the UK, calculated from data collected using randomNetworkDistancer. "Route factor" here is road network route over Euclidean (actually Great Circle) distance, so it's "how much further are road routes than the crow flies?" The route factor for a range of distances clearly shows how longer journeys get more efficient. Code for this plot is in routeFactor.R
 
-Using R to find and save random routes in a given shapefile using Google's distance matrix API. 
-It will output a CSV containing origin/destination details, the road network distance between them 
-and the time taken to travel, according to Google. Each CSV is date/time-stamped in the filename so they won't overwrite each other.
+"routesRandomiser.R": find and save random road network routes in a given shapefile using Google's distance matrix API. It will output a CSV containing origin/destination details, the road network distance between them 
+and the time taken to travel, according to Google. Each CSV is date/time-stamped in the filename so they won't overwrite each other. "routeFactor.R" can use this file to calculate straight-line distances (actually, [Great Circle distances](http://rpackages.ianhowson.com/rforge/sp/man/spDistsN1.html)) between the chosen route origin and destinations and outputs the graph above.
 
 Read [Google's distance matrix API page](https://developers.google.com/maps/documentation/distancematrix/) 
 for full details of how it works. You can only get a maximum of 2500 routes per day without paying them. 
@@ -20,7 +19,7 @@ I'd be interested in hearing if it works for others.
 
 To get it going, open the script in R and do the following:
 
-* Set your working directory appropriately
+* Set your working directory appropriately (or use RStudio and this project)
 * check the list of libraries are installed
 * Put a single shapefile into the same folder, change the file name/location at:
 ```
@@ -28,7 +27,7 @@ gbmerge <- readOGR(dsn="GB_merged", "GB_merged")
 ```
 * (A shapefile for Great Britain is included).
 * Depending on where you are, check you're converting to the right coordinate system
-(currently UK national grid is being converted to lat-long):
+(currently UK national grid is being converted to lat-lon):
 ```
 randomPointOrigins <- spTransform(randomPointOrigins, CRS("+init=epsg:4326"))
 randomPointDestinations <- spTransform(randomPointDestinations, CRS("+init=epsg:4326"))

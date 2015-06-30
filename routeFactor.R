@@ -63,5 +63,5 @@ rfhypo$distmean <- tapply(routes$spDist, routes$distbins, mean)
 #... and average route factor
 rfhypo$rfmean <- tapply(routes$rf, routes$distbins, mean)
 
-plot(rfhypo)
+plot(rfhypo, xlab="distance", ylab="mean route factor")
 lines(rfhypo, col="green")

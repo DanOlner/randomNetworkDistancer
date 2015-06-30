@@ -3,9 +3,6 @@
 #https://developers.google.com/maps/documentation/distancematrix/
 #Store and save results as CSV
 
-#Change this!
-#setwd("C:/Users/geodo/Dropbox/R/Workspace/randomNetworkDistancer")
-
 library(rgdal)
 library(rgeos)
 library(httr)

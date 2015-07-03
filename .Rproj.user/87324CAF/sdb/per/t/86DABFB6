@@ -1,0 +1,16 @@
+{
+    "contents" : "myjekyllsite = c(\"http://danolner.github.io/\")\n\nKnitPost <- function(input, base.url = myjekyllsite) {\n  require(knitr)\n  opts_knit$set(base.url = base.url)\n  fig.path <- paste0(\"figs/\", sub(\".Rmd$\", \"\", basename(input)), \"/\")\n  opts_chunk$set(fig.path = fig.path)\n  opts_chunk$set(fig.cap = \"center\")\n  render_jekyll()\n  knit(input, envir = parent.frame())\n}",
+    "created" : 1435936656472.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3322354704",
+    "id" : "86DABFB6",
+    "lastKnownWriteTime" : 1435936667,
+    "path" : "C:/Users/geodo/Dropbox/R/Workspace/randomNetworkDistancer/KnitPostFunction.R",
+    "project_path" : "KnitPostFunction.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

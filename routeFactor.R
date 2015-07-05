@@ -43,7 +43,7 @@ plot(routes$distance, routes$spDist)
 #Or have the ratio mean "how much further route distance is than Euclidean/Great Circle
 routes$rf <- routes$distance/routes$spDist
 
-hist(routes$rf, breaks=30)
+plot(routes$distance, routes$rf)
 
 bins = 10
 
@@ -65,3 +65,21 @@ rfhypo$rfmean <- tapply(routes$rf, routes$distbins, mean)
 
 plot(rfhypo, xlab="distance", ylab="mean route factor")
 lines(rfhypo, col="green")
+
+sub <- routes[,c(11,12)]
+
+#What's the distribution in each of the distance bins?
+output <- ggplot(routes, aes(factor(distbins), rf)) +
+  geom_boxplot()
+
+output
+
+sub <- routes[routes$distbins == 10,]
+
+output <- ggplot(sub, aes(factor(distbins), rf)) +
+  geom_boxplot()
+
+output
+
+
+

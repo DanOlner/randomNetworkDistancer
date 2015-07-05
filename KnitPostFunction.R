@@ -9,3 +9,5 @@ KnitPost <- function(input, base.url = myjekyllsite) {
   render_jekyll()
   knit(input, envir = parent.frame())
 }
+
+KnitPost("routeFactor.Rmd")

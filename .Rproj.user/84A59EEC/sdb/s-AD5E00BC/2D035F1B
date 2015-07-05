@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1434555934843.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2D035F1B",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "bldpedwi72",
+        "caption" : "routes",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=routes&cache_key=bldpedwi72",
+        "displayedObservations" : "5434",
+        "environment" : "",
+        "object" : "routes",
+        "totalObservations" : "5434",
+        "variables" : "13"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

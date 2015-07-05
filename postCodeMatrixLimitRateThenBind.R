@@ -4,9 +4,6 @@ library(httr)
 library(jsonlite)
 library(reshape2)
 
-#apikey <- read.csv("apikey.csv")
-#apikey <- apikey[1,]
-
 #Base URL, will knock query together below
 testURL <- "https://maps.googleapis.com/maps/api/distancematrix/json"
 
@@ -23,6 +20,14 @@ rownames(postcodematrix) <- postcodes
 colnames(postcodematrix) <- postcodes
 
 postcodepairs <- melt(postcodematrix)
+
+#Do the same with venue names - these will be used below for dcast
+venuematrix <- matrix(nrow=length(venues) , ncol=length(venues))
+rownames(venuematrix) <- venues
+colnames(venuematrix) <- venues
+
+venuepairs <- melt(venuematrix)
+
 
 results <- matrix(nrow=nrow(postcodepairs) , ncol=4)
 
@@ -83,43 +88,26 @@ resultsBackup <- results
 #Just verbal description of time and distance
 textresults <- results[,3:4]
 
-textresults <- data.frame(textresults)
+#textresults <- data.frame(textresults)
 
 #Foundry and fusion have the same postcode
 #need to add unique identifier to deal with that
-textresults$id <- rep(1:16, times = 16)
+#textresults$id <- rep(1:16, times = 16)
 
 #join up postcodes. One matrix for distance, one for time
-distance <- cbind(postcodepairs, textresults)
-distance <- distance[,c(1,2,5,6)]
+distance <- cbind(venuepairs, textresults)
+distance <- distance[,c(1,2,4)]
 
-distancematrix <- dcast(distance, Var1 + id ~ Var2, value.var = "X2")
+distancematrix <- dcast(distance, Var1 ~ Var2, value.var = "1")
 
+time <- cbind(venuepairs, textresults)
+time <- time[,c(1,2,5)]
 
-
-
-
-
-#Add postcode labels
-rownames(distresultstext) <- postcodes
-colnames(distresultstext) <- postcodes
-
-rownames(timeresultstext) <- postcodes
-colnames(timeresultstext) <- postcodes
+timematrix <- dcast(time, Var1 ~ Var2, value.var = "2")
 
 #get ride of odd diagonal. 1 minute to get to where I'm standing?
-distresultstext[distresultstext == "1 m"] <- "0"
-timeresultstext[timeresultstext == "1 min"] <- "0 min"
+distancematrix[distancematrix == "1 m"] <- "xx"
+timematrix[timematrix == "1 min"] <- "xx"
 
-write.csv(distresultstext, file="distresults.csv")
-write.csv(timeresultstext, file="timeresults.csv")
-
-#Or use venue names, more logically!
-rownames(distresultstext) <- venues
-colnames(distresultstext) <- venues
-
-rownames(timeresultstext) <- venues
-colnames(timeresultstext) <- venues
-
-write.csv(distresultstext, file="distresults_venues.csv")
-write.csv(timeresultstext, file="timeresults_venues.csv")
+write.csv(distancematrix, file="distresults.csv")
+write.csv(timematrix, file="timeresults.csv")

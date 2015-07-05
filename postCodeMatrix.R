@@ -3,10 +3,18 @@ library(rgeos)
 library(httr)
 library(jsonlite)
 
-#Base URL, will knock query together below
-testURL <- "http://maps.googleapis.com/maps/api/distancematrix/json"
+apikey <- read.csv("apikey.csv")
+apikey <- apikey[1,]
 
-postcodes <- c("s118sa","s71bx","ls84dr")
+#Base URL, will knock query together below
+testURL <- "https://maps.googleapis.com/maps/api/distancematrix/json"
+
+#venuesNPostcodes <- read.csv("tramlineVenues_n_Postcodes.csv")
+postcodes <- venuesNPostcodes[,2]
+#postcodes <- c("s118sa","s71bx","ls84dr")
+#no whitespace
+postcodes <- gsub(" ", "", postcodes, fixed=TRUE)
+venues <- venuesNPostcodes[,1]
 
 #OD matrix
 distresults <- matrix(nrow=length(postcodes) , ncol=length(postcodes))
@@ -23,7 +31,9 @@ postcodeString <- paste(postcodes, collapse="|")
 qry <- paste("origins=", postcodeString,
              "&destinations=", postcodeString ,
              "&sensor=FALSE",
-              "&mode=bicycling",
+              "&mode=walking",
+             "&key=",
+             apikey,
              sep=""#no spaces
 )
 
@@ -38,6 +48,8 @@ gimme <- GET(
 
 #http://blog.rstudio.org/2014/03/21/httr-0-3/
 stop_for_status(gimme)
+
+store <- content(gimme)
 
 #Parse postcodes
 #"results are returned in rows, each row containing one origin paired with each destination"
@@ -70,3 +82,13 @@ timeresultstext[timeresultstext == "1 min"] <- "0 min"
 
 write.csv(distresultstext, file="distresults.csv")
 write.csv(timeresultstext, file="timeresults.csv")
+
+#Or use venue names, more logically!
+rownames(distresultstext) <- venues
+colnames(distresultstext) <- venues
+
+rownames(timeresultstext) <- venues
+colnames(timeresultstext) <- venues
+
+write.csv(distresultstext, file="distresults_venues.csv")
+write.csv(timeresultstext, file="timeresults_venues.csv")

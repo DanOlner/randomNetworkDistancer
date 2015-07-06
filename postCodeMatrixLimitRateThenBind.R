@@ -78,21 +78,8 @@ if(store$rows[[1]]$elements[[1]]$status=="OK") {
 
 }#end for
 
-#just while I'm playing...
-resultsBackup <- results
-
-#get ride of odd diagonal. 1 minute to get to where I'm standing?
-#results[results == "1 m"] <- "0"
-#results[results == "1 min"] <- "0 min"
-
 #Just verbal description of time and distance
 textresults <- results[,3:4]
-
-#textresults <- data.frame(textresults)
-
-#Foundry and fusion have the same postcode
-#need to add unique identifier to deal with that
-#textresults$id <- rep(1:16, times = 16)
 
 #join up postcodes. One matrix for distance, one for time
 distance <- cbind(venuepairs, textresults)
@@ -108,6 +95,10 @@ timematrix <- dcast(time, Var1 ~ Var2, value.var = "2")
 #get ride of odd diagonal. 1 minute to get to where I'm standing?
 distancematrix[distancematrix == "1 m"] <- "xx"
 timematrix[timematrix == "1 min"] <- "xx"
+
+#transpose so origins are columns
+distancematrix <- t(distancematrix)
+timematrix <- t(timematrix)
 
 write.csv(distancematrix, file="distresults.csv")
 write.csv(timematrix, file="timeresults.csv")

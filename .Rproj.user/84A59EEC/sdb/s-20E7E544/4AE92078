@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1434560920998.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4AE92078",
+    "lastKnownWriteTime" : 23081343235129455,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "5rldx62eno",
+        "caption" : "rfhypo",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=rfhypo&cache_key=5rldx62eno",
+        "displayedObservations" : "10",
+        "environment" : "",
+        "object" : "rfhypo",
+        "totalObservations" : "10",
+        "variables" : "2"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
